@@ -1,37 +1,37 @@
 # -*- coding: UTF-8 -*-
 #!/usr/local/bin/python
 
-import Read_datebase
-import Reception_start
-import Backstage_start
-import Reception
-import Backstage
-from commons import Public
+from Commons.lib import Read_datebase
+from Module.Common import Browser
+from Module.Front import Module_Front_Url
+from Module.Backstage import Module_Backstage_Url,Module_Backstage_Login,Module_Financing
 
-public = Public.public()
-Reception_start = Reception_start.Reception_start()
-Backstage_start = Backstage_start.Backstage_start()
-Reception = Reception.Reception()
-Backstage = Backstage.Backstage()
-
+######################
+#    对象定义    #
+######################
+browser = Browser.browser()
+module_front_Url = Module_Front_Url.front_url()
+module_Backstage_Url = Module_Backstage_Url.Backstage_url()
+module_backstage_login = Module_Backstage_Login.module_backstage_login()
+module_financing = Module_Financing.financing()
 ######################
 #    初始化部分    #
 ######################
 #打开浏览器
 file = 'E:\gautotest\datebase.xls'
-driver = public.browser_start()
+driver = browser.browser_start()
 
 
 # ######################
 # #    前台操作部分    #
 # ######################
 # #打开vmdai前台首页
-# Reception_start.url_start(driver)
+#module_front_Url.url_start(driver,'')
 # #用户登录-投标
 # for row in range(2,Read_datebase.rownum(file,'invest')):
-#     Reception_start.login_start(driver,row)
-#     Reception_start.invest_start(driver,row)
-#     Reception_start.logout_start(driver)
+#      Reception_start.login_start(driver,row)
+#      Reception_start.invest_start(driver,row)
+#      Reception_start.logout_start(driver)
 # #退出登录
 # #Reception.Signout(driver)
 # #投标
@@ -41,12 +41,12 @@ driver = public.browser_start()
 #    后台操作部分    #
 ######################
 #打开vmdai后台首页
-Backstage_start.url_start(driver)
-#发标用户登录-发标
+module_Backstage_Url.url_start(driver,'')
+# #发标用户登录-发标
 for row in range(2,Read_datebase.rownum(file,'financing')):
-    Backstage_start.login_start(driver,row)
-    Backstage_start.financing_start(driver,row)
-    Backstage_start.logout_start(driver)
+    module_backstage_login.login_start(driver,row)
+    module_financing.financing(driver,row)
+    module_backstage_login.logout_start(driver)
 
 
 

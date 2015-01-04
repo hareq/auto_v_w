@@ -3,17 +3,16 @@ __author__ = 'guyanhua'
 import sys
 from selenium import webdriver
 import time
-import Read_datebase,Reception
-from Reception import Reception
-from Backstage import Backstage
+from Commons.lib import Read_datebase
+from Commons.Element.Backstage import Element_Financing
 
-class Backstage_start:
+element_financing = Element_Financing.financing()
 
-    def financing_start(self,driver,row):
+class financing:
+    def financing(self,driver,row):
         file = 'E:\gautotest\datebase.xls'
         data = Read_datebase.open_excel(file)
         table = data.sheet_by_name('financing')
-        mylogin = Backstage()
         uername = table.cell(row,Read_datebase.find_colum(file,'financing','username')).value
         bank = table.cell(row,Read_datebase.find_colum(file,'financing','bank')).value
         moneyf = table.cell(row,Read_datebase.find_colum(file,'financing','moneyf')).value
@@ -33,4 +32,4 @@ class Backstage_start:
         c_price = table.cell(row,Read_datebase.find_colum(file,'financing','c_price')).value
         table = data.sheet_by_name('public')
         url=table.cell(2,Read_datebase.find_colum(file,'public','url_admin')).value
-        mylogin.financing(url,uername,purpose,pro_type,bank,moneyf,dayormauthtype,dayormauth,rate,end_time,service_fee,deposit,activity,estate_name,build_size,limit,p_price,c_price,driver)
+        element_financing.financing(url,uername,purpose,pro_type,bank,moneyf,dayormauthtype,dayormauth,rate,end_time,service_fee,deposit,activity,estate_name,build_size,limit,p_price,c_price,driver)

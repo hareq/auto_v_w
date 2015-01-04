@@ -4,7 +4,7 @@
 import sys
 from selenium import webdriver
 import time,re
-import Read_datebase
+from Commons.lib import Read_datebase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 
-class Backstage:
+class financing:
 
     def financing(self,url,uername,purpose,pro_type,bank,moneyf,dayormauthtype,dayormauth,rate,end_time,service_fee,deposit,activity,estate_name,build_size,limit,p_price,c_price,driver):
       url = url+"lender"
@@ -46,9 +46,11 @@ class Backstage:
       if purpose =="网络借款体验":
           Select(driver.find_element_by_id("selectError3")).select_by_visible_text(u"网络借款体验")
       if activity == 'yes':
-           Select(driver.find_element_by_name("activity_id")).select_by_visible_text(u"2014年11月投标即送")
+          driver.find_element_by_name("activity_id[]").click()
+           #Select(driver.find_element_by_name("activity_id")).select_by_visible_text(u"2014年11月投标即送")
       if activity == 'no':
-           Select(driver.find_element_by_name("activity_id")).select_by_visible_text(u"非活动标")
+          1 == 1
+           #Select(driver.find_element_by_name("activity_id")).select_by_visible_text(u"非活动标")
       if deposit == "是":
           driver.find_element_by_xpath("(//div[@id='uniform-day_click']/span)[1]").click()
       if deposit == "否":

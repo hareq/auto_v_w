@@ -4,15 +4,12 @@
 import os,sys
 from selenium import webdriver
 import time
-import Read_datebase
+from Commons.lib import Read_datebase
 
 class Login:
 	#driver = None
 	# def __init__(self,driver):
 	# 	self.driver = driver
-
-    def url(self,url,driver):
-      driver.get(url)
 
     def login(self,url,user,password,driver):
       url = url+"user/login"
