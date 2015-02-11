@@ -3,16 +3,17 @@ __author__ = 'guyanhua'
 import sys
 from selenium import webdriver
 import time
-import Read_datebase,Reception
-from Reception import Reception
-from Backstage import Backstage
+from Config import common_config
+from Commons.lib import Read_datebase
+from Commons.Element.Front import Invest
 
-class Reception_start:
+mylogin = Invest.Invest()
+
+class invest_start:
 
     def invest_start(self,driver,row):
-        file = 'E:\gautotest\datebase.xls'
+        file = common_config.datebase_path
         data = Read_datebase.open_excel(file)
-        mylogin = Reception()
         table = data.sheet_by_name('invest')
         money=table.cell(row,Read_datebase.find_colum(file,'invest','money')).value
         table = data.sheet_by_name('public')

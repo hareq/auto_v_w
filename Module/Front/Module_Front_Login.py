@@ -3,16 +3,16 @@ __author__ = 'guyanhua'
 import sys
 from selenium import webdriver
 import time
-import Read_datebase,Reception
-from Reception import Reception
-from Backstage import Backstage
+from Commons.lib import Read_datebase
+from Commons.Element.Front import Login
+from Config import common_config
+mylogin = Login.Login()
 
-class Reception_start:
+class module_front_login:
 
     def login_start(self,driver,row):
-        file = 'E:\gautotest\datebase.xls'
+        file = common_config.datebase_path
         data = Read_datebase.open_excel(file)
-        mylogin = Reception()
         table = data.sheet_by_name('invest')
         user=table.cell(row,Read_datebase.find_colum(file,'invest','user')).value
         password=table.cell(row,Read_datebase.find_colum(file,'invest','password')).value
@@ -20,9 +20,8 @@ class Reception_start:
         mylogin.login(table.cell(2,Read_datebase.find_colum(file,'public','url_vmdai')).value,user,password,driver)
 
     def logout_start(self,driver):
-        file = 'E:\gautotest\datebase.xls'
+        file = common_config.datebase_path
         data = Read_datebase.open_excel(file)
-        mylogin = Reception()
         table = data.sheet_by_name('public')
         mylogin.logout(driver,table.cell(2,Read_datebase.find_colum(file,'public','url_vmdai')).value)
 

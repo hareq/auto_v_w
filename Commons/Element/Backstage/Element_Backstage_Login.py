@@ -22,7 +22,7 @@ class module_backstage_login:
       driver.get(url)
 
     def login(self,url,user,password,driver):
-      url = 'http://vadmin.vmdai.com/lender'
+      url =url+'lender'
       driver.get(url)
       #print driver.title
       driver.find_element_by_name("user_name").click()
